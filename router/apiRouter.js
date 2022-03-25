@@ -26,7 +26,7 @@ router.post('/notes', (req, res) => {
     currentData.push(note);
     console.log(currentData);
     fs.writeFileSync('./db/db.json', JSON.stringify(currentData));
-    
+    res.json(currentData);
     // fs.writeFile()
 });
 
