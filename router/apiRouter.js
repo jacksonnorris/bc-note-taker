@@ -33,6 +33,13 @@ router.post('/notes', (req, res) => {
 router.delete('/notes/:id', (req, res) => {
     var noteId = req.params.id;
     console.log(noteId);
+    var info = fs.readFileSync('./db/db.json', 'utf-8');
+    var currentData = JSON.parse(info);
+    for (var note in currentData) {
+        if (currentData[note].id === noteId) {
+            console.log('found')
+        }
+    }
 })
 
 router.get('./db/db.json', (req, res) => {
