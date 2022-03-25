@@ -3,6 +3,7 @@ const path = require('path');
 const notes = require('../db/db.json');
 const fs = require('fs');
 const { text } = require('express');
+const {v4 : uuidv4} = require('uuid');
 
 router.get('/notes', (req, res) => {
     fs.readFile('./db/db.json', 'utf-8', function(err, data) {
@@ -15,7 +16,8 @@ router.post('/notes', (req, res) => {
 //    console.log(req.body);
    const note = { 
        title: req.body.title,
-       text: req.body.text
+       text: req.body.text,
+       id: uuidv4()
     }
     var info = fs.readFileSync('./db/db.json', 'utf-8');
     // console.log(info);
