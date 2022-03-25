@@ -30,8 +30,14 @@ router.post('/notes', (req, res) => {
     // fs.writeFile()
 });
 
+router.delete('/notes/:id', (req, res) => {
+    var noteId = req.params.id;
+    console.log(noteId);
+})
+
 router.get('./db/db.json', (req, res) => {
     console.info(res.status(200).json(notes));
 });
+
 
 module.exports = router;
