@@ -35,11 +35,15 @@ router.delete('/notes/:id', (req, res) => {
     console.log(noteId);
     var info = fs.readFileSync('./db/db.json', 'utf-8');
     var currentData = JSON.parse(info);
-    for (var note in currentData) {
-        if (currentData[note].id === noteId) {
-            console.log('found')
-        }
-    }
+    // for (var note in currentData) {
+    //     if (currentData[note].id === noteId) {
+    //         console.log('found')
+    //     }
+    // }
+    let newData = currentData.filter(note => note.id !== noteId);
+    console.log(newData);
+    fs.writeFileSync('./db/db.json', JSON.stringify(newData));
+    res.json(newData);
 })
 
 router.get('./db/db.json', (req, res) => {
